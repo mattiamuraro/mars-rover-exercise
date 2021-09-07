@@ -91,16 +91,46 @@ namespace MarsExercise.PathFinder
         /// <returns>Try move result</returns>
         public TryMoveResult GetMarsCommands()
         {
-            string previousDirection = null;
-            var commands = new List<char>();
-            var success = false;
-
             Simulator.PrintCurrentSituation();
 
             //Get the vehicle location
             var vehicleLocation = Simulator.GetVehicleLocation();
+            
+            //Get the vehicle orientation
+            var vehicleOrientation = Simulator.GetVehicleOrientation();
 
-            //The engine try to find a solution until it find it or identify the problem as unsolvable
+            //Get movements to reach the goal
+            var movements = GetMovements(vehicleLocation);
+
+            //If the previous method return an empty dictionary the problem is unsolvable
+            if (movements == null)
+                return new TryMoveResult();
+
+            //Convert movements into commands
+            var commands = vehicleOrientation.ToCommands(movements);
+
+            return new TryMoveResult(commands);
+        }
+
+        /// <summary>
+        /// Get movements needed to reach the goal location
+        /// </summary>
+        /// <param name="vehicleLocation">Starting vehicle location</param>
+        /// <returns>
+        /// Dictionary with:
+        /// - key composed by x + # + y of reached location
+        /// - value movement executed
+        /// </returns>
+        private Dictionary<string, string> GetMovements(Location vehicleLocation)
+        {
+            // Dictionary created to store the movements needed to bring the vehicle simulator
+            // from the start to the finish
+            var movements = new Dictionary<string, string>();
+
+            string previousDirection = null;
+
+            var success = false;
+
             while (!success)
             {
                 //Calculate next movement
@@ -121,10 +151,10 @@ namespace MarsExercise.PathFinder
                 //- verify if goal is reached
                 if (tryMoveResult.Success)
                 {
-                    commands.AddRange(tryMoveResult.Commands);
                     previousDirection = direction;
                     success = Simulator.IsGoalReached();
                     vehicleLocation = Simulator.GetVehicleLocation();
+                    movements.UpdateMovements(vehicleLocation, direction);
                 }
                 //If the problem is unsolvable the engine break the cicle
                 //and communicate the result
@@ -132,7 +162,7 @@ namespace MarsExercise.PathFinder
                     break;
             }
 
-            return new TryMoveResult(success, commands);
+            return success ? movements : null;
         }
 
         /// <summary>

@@ -7,29 +7,33 @@ namespace MarsExercise.Earth
 {
     class Program
     {
+        //Set movement timeout to see mars path in the console
+        private const int movementTimeout = 200;
+
         static void Main(string[] args)
         {
             // Planet size configuration
             var planetXsize = 10;
             var planetYsize = 10;
-
-            //Set movement timeout to see mars path in the console
-            var movementTimeout = 1;
+            
+            var planet = GetPlanet(planetXsize, planetYsize);
 
             // Vehicle start location
             var start = new Location(0, 3);
+
+            // Vehicle orientation
+            var orientation = Direction.East;
 
             // Vehicle goal location
             var finish = new Location(9, 1);
 
 
-            var planet = GetPlanet(planetXsize, planetYsize);
 
             Console.WriteLine("#####PLANET MAP#####");
             planet.PrintCurrentSituation(start, finish);
             Console.WriteLine("#####PLANET MAP#####");
 
-            var orchestrator = new OrchestratorManager(planetXsize, planetYsize, planet, start, finish, Direction.East, movementTimeout);
+            var orchestrator = new OrchestratorManager(planetXsize, planetYsize, planet, start, finish, orientation, movementTimeout);
             var result = orchestrator.DriveMars();
             Console.WriteLine(result ? "Goal reached" : "Goal not reachable");
         }

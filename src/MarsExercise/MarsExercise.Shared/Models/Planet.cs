@@ -1,4 +1,5 @@
 ﻿using MarsExercise.Shared.Helpers;
+using System;
 
 namespace MarsExercise.Shared.Models
 {
@@ -20,7 +21,10 @@ namespace MarsExercise.Shared.Models
         /// <param name="y">Axis y grid size</param>
         public Planet(int x, int y)
         {
-            Map = new bool[y, x];
+            if (x < 0 || y < 0)
+                throw new Exception("Invalid grid size");
+
+                Map = new bool[y, x];
         }
 
         /// <summary>

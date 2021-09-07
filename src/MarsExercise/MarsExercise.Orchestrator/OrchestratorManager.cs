@@ -32,8 +32,8 @@ namespace MarsExercise.Orchestrator
         /// <param name="orientation">Vehicle orientation</param>
         public OrchestratorManager(int planetXsize, int planetYsize, Planet planet, Location start, Location finish, string orientation = Direction.North, int movementTimeout = 0)
         {
-            Mars = new RoverManager(planet, start, orientation, movementTimeout);
             PathFinderEngine = new PathFinderEngine(planetXsize, planetYsize, start, finish, orientation);
+            Mars = new RoverManager(planet, start, orientation, movementTimeout);
         }
 
         /// <summary>

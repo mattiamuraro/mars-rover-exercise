@@ -95,6 +95,15 @@ namespace MarsExercise.PathFinder.Engines
         }
 
         /// <summary>
+        /// Get current vehicle orientation
+        /// </summary>
+        /// <returns>Vehicle orientation</returns>
+        public string GetVehicleOrientation()
+        {
+            return Vehicle.GetOrientation();
+        }
+
+        /// <summary>
         /// Print on console a rappresentation of current simulator situation based on:
         /// - planet obstacles and size;
         /// - finish location;
