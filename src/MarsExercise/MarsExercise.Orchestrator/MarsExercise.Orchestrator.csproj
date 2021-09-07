@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MarsExercise.PathFinder\MarsExercise.PathFinder.csproj" />
+    <ProjectReference Include="..\MarsExercise.Rover\MarsExercise.Rover.csproj" />
+    <ProjectReference Include="..\MarsExercise.Shared\MarsExercise.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
