@@ -18,7 +18,7 @@ The architecture is composed by four principal components:
 - Rover: a class library that simulate the behaviour of Mars Rover;
 - Orchestrator: a class library that, under the control of the Earth, orchestrate the communications between Pathfinder engine and the rover.
 
-![Architecture](./docs/architecture.png "Architecture diagram")
+![Architecture](./docs/architecture_image.png "Architecture diagram")
 
 More in details the communication step are:
 - Earth configures the Orchestrator and ask to its to drive the Mars Rover to the goal location;
@@ -44,23 +44,23 @@ They are:
 During the execution the application will show different log info:
 - the initial planet map;
 
-![Planet](./docs/planet_map.png "Planet Map")
+![Planet](./docs/planet_map_image.png "Planet Map")
 
 - the simulator planet map every time it receives a new request from the Orchestrator;
 
-![Simulator](./docs/simulator_planet_map.png "Simulator Map")
+![Simulator](./docs/simulator_planet_map_image.png "Simulator Map")
 
 - the list of commands received by the Mars Rovers with a counter to identify the current iteration;
 
-![Commands](./docs/mars_rover_commands.png "Commands")
+![Commands](./docs/mars_rover_commands_image.png "Commands")
 
 - the Mars Rover map after the execution of every command with the information about the command itself and the result (success/failed);
 
-![Mars](./docs/mars_planet_map.png "Mars Map")
+![Mars](./docs/mars_planet_map_image.png "Mars Map")
 
 - the final result received by the Earth (Goal reached/Goal not reachable).
 
-![Result](./docs/earth_result.png "Earth Result")
+![Result](./docs/earth_result_image.png "Earth Result")
 
 ## Next step
 There are some possible improvements like:
